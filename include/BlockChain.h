@@ -25,6 +25,7 @@ public:
     //public function
     void addBlock(TransactionData data);
     bool isChainValid();
+    void printChain();
 
 
     //for demo
@@ -50,9 +51,11 @@ Block *BlockChain::getLastedBlock() {
 }
 
 void BlockChain::addBlock(TransactionData d) {
-    int index = (int)chain.size() - 1;
-    Block newBlock(index, d, getLastedBlock() -> getHash());
-    //chain.push_back(newBlock);
+    int index = (int)chain.size();
+    cout << "add block" << endl;
+    size_t prevHash = (int)chain.size() > 0? getLastedBlock() -> getHash():0;
+    Block newBlock(index, d, prevHash);
+    chain.push_back(newBlock);
 };
 
 bool BlockChain::isChainValid() {
@@ -62,17 +65,37 @@ bool BlockChain::isChainValid() {
     for(it = chain.begin(); it != chain.end(); it++){
         Block currentBlock = *it;
         if (!currentBlock.isValidHash()){ //data in block manipulated
+            cout<<"data in current block manipulated"<<endl;
             return false;
         }
 
-        if (chainLen > 1){
+        if (it != chain.begin()){
             Block prevBlock = *(it - 1);
             if (currentBlock.getPreviousHash()!=prevBlock.getHash()){
+                cout<<"data in prev block manipulated"<<endl;
                 return false;
             }
         }
     }
 
     return true;
+}
+
+void BlockChain::printChain() {
+    std::vector<Block>::iterator it;
+
+    for (it = chain.begin(); it != chain.end(); ++it)
+    {
+        Block currentBlock = *it;
+        printf("\n\nBlock ===================================");
+        printf("\nIndex: %d", currentBlock.getIndex());
+        printf("\nAmount: %f", currentBlock.data.amount);
+        printf("\nSenderKey: %s", currentBlock.data.senderKey.c_str());
+        printf("\nReceiverKey: %s", currentBlock.data.receiveKey.c_str());
+        printf("\nTimestamp: %ld", currentBlock.data.timeStamp);
+        printf("\nHash: %zu", currentBlock.getHash());
+        printf("\nPrevious Hash: %zu", currentBlock.getPreviousHash());
+        printf("\nIs Block Valid?: %d", currentBlock.isValidHash());
+    }
 }
 #endif //BLOCKCHAIN_BLOCKCHAIN_H

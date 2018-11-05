@@ -28,6 +28,7 @@ int main(){
     AwesomeCoin.addBlock(Data2);
 
     cout << "BlockChain valid?" << std::boolalpha<< AwesomeCoin.isChainValid() << endl;
+    AwesomeCoin.printChain();
     return 0;
 }
 

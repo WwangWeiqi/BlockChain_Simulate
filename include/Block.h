@@ -26,6 +26,8 @@ public:
     //get original hash
     size_t getHash();
 
+    int getIndex();
+
     //get previous hash
     size_t getPreviousHash();
 
@@ -57,13 +59,18 @@ size_t Block::getHash() {
     return blockHash;
 };
 
+int Block::getIndex() {
+    return index;
+};
+
+
 size_t Block::getPreviousHash() {
     return previousHash;
 };
 
 bool Block::isValidHash() {
-    cout <<  generateHash() << endl;
-    cout << blockHash << endl;
+   // cout <<  generateHash() << endl;
+    // cout << blockHash << endl;
     return generateHash() == getHash(); // blockHash initialized with generateHash(), if any data manipulated, generateHash will return value different from blockhash
 };
 
