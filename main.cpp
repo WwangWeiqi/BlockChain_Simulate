@@ -8,23 +8,14 @@ int main(){
     //start blockchain
     BlockChain AwesomeCoin;
 
-    //data first add to block
-    TransactionData iniData;
+    //add first data
     time_t dataTime;
-    iniData.amount = 1.5;
-    iniData.receiveKey = "weiqi";
-    iniData.senderKey = "wang";
-    iniData.timeStamp = time(&dataTime);
+    TransactionData Data1(1.5,"weiqi","wang",time(&dataTime));
+    AwesomeCoin.addBlock(Data1);
 
-    AwesomeCoin.addBlock(iniData);
-
-    TransactionData Data2;
+    //add second data
     time_t dataTime2;
-    Data2.amount = 1.52321;
-    Data2.receiveKey = "weiqi";
-    Data2.senderKey = "wang";
-    Data2.timeStamp = time(&dataTime2);
-
+    TransactionData Data2(1.4442,"ZHANG","YU",time(&dataTime2));
     AwesomeCoin.addBlock(Data2);
 
     //Test if someone sneaky, will generateHash() again to validate the carried data

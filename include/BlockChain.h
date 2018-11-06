@@ -34,11 +34,12 @@ public:
 
 Block BlockChain::createGenesisBlock() {
     time_t current;
-    TransactionData d;
-    d.amount = 0;
-    d.receiveKey = "none";
-    d.senderKey = "none";
-    d.timeStamp = time(&current);
+    TransactionData d(0,"genesis","genesis",time(&current));
+
+//    d.amount = 0;
+//    d.receiveKey = "genesis";
+//    d.senderKey = "genesis";
+//    d.timeStamp = time(&current);
 
     hash<int> hash1;
     Block genesis(0,d,hash1(0));

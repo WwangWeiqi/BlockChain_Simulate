@@ -46,7 +46,7 @@ Block::Block(int idx, TransactionData d, size_t prevHash)
     index = idx;
     data = d;
     previousHash = prevHash;
-    blockHash = generateHash();
+    blockHash = generateHash(); //in constructor, only initialize once when block created and won't change
 }
 
 

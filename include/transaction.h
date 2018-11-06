@@ -17,6 +17,15 @@ struct TransactionData {
     string senderKey;
     string receiveKey;
     time_t timeStamp;
+
+    TransactionData(){};
+    TransactionData(double amt,string sender, string receive, time_t tmsp){
+        this->amount = amt;
+        this->senderKey = sender;
+        this->receiveKey = receive;
+        this->timeStamp = tmsp;
+    };
 };
+
 
 #endif //BLOCKCHAIN_TRANSACTION_H
