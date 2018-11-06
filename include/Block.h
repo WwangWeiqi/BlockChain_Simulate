@@ -1,5 +1,6 @@
 //
 // Created by weiqi wang on 11/4/18.
+// Block stored information about transaction after hashed
 //
 
 #ifndef BLOCKCHAIN_BLOCK_H
@@ -31,6 +32,8 @@ public:
     //get previous hash
     size_t getPreviousHash();
 
+    size_t getGenerate();
+
     //transaction data
     TransactionData data;
 
@@ -46,6 +49,7 @@ Block::Block(int idx, TransactionData d, size_t prevHash)
     blockHash = generateHash();
 }
 
+
 size_t Block::generateHash() {
     hash<string> hash1;
     hash<size_t> hash2;
@@ -53,6 +57,10 @@ size_t Block::generateHash() {
     string toHash = to_string(data.amount) + data.receiveKey + data.senderKey + to_string(data.timeStamp);
 
     return finalHash(hash1(toHash) + hash2(previousHash));
+};
+
+size_t Block::getGenerate(){
+    return generateHash();
 };
 
 size_t Block::getHash() {

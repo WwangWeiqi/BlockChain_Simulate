@@ -94,6 +94,7 @@ void BlockChain::printChain() {
         printf("\nReceiverKey: %s", currentBlock.data.receiveKey.c_str());
         printf("\nTimestamp: %ld", currentBlock.data.timeStamp);
         printf("\nHash: %zu", currentBlock.getHash());
+        printf("\nGenerate to Validate: %zu", currentBlock.getGenerate());
         printf("\nPrevious Hash: %zu", currentBlock.getPreviousHash());
         printf("\nIs Block Valid?: %d", currentBlock.isValidHash());
     }
